@@ -40,29 +40,32 @@ class Vision:
         plt.show()
 
     def year_basic_chart(self):
-        dwell = Categorieprep.dwell(self.data)
-        union = Categorieprep.union(self.data)
-        food = Categorieprep.food(self.data)
-        savings = Categorieprep.savings(self.data)
-        car = Categorieprep.car(self.data)
-        freetime = Categorieprep.freetime(self.data)
+        dwell = [a * -1 for a in Categorieprep.dwell(self.data)]
+        union = [a * -1 for a in Categorieprep.union(self.data)]
+        food = [a * -1 for a in Categorieprep.food(self.data)]
+        savings = [a * -1 for a in Categorieprep.savings(self.data)]
+        car = [a * -1 for a in Categorieprep.car(self.data)]
+        freetime = [a * -1 for a in Categorieprep.freetime(self.data)]
         income_from_savings = SubCategorieprep.income_from_savings(self.data)
         income = Categorieprep.income(self.data)
-        college = SubCategorieprep.college(self.data)
+        college = [a * -1 for a in SubCategorieprep.college(self.data)]
         
         x = Vision.get_months(self)
-        y = np.vstack([income,dwell, union, food, savings, car, freetime, college, income_from_savings])
-        label = ['Einkommen','Wohnungskosten','Gewerkschaft','Lebensmittel','Sparen','Auto','Freizeit','College','Geld vom Sparbuch']
+        y = np.vstack([dwell, union, food, savings, car, freetime, college])#, income_from_savings, income])
+        label = ['Wohnungskosten','Gewerkschaft','Lebensmittel','Sparen','Auto','Freizeit','College']#,'Geld vom Sparbuch','Einkommen']
         
         fig,ax = plt.subplots(2,1) 
-        ax[0].stackplot(x,y,labels = label)
+        ax[0].stackplot(x,dwell, union, food, savings, car, freetime, college,labels = label)
+        ax[0].plot(income,label = 'Einkommen')
+        ax[0].fill_between(x, 0, income, where = np.array(income) > 0, color='green', alpha=.25, interpolate=True)
         ax[0].set_title('Monatliche Kontobewegungen')
         ax[0].set_ylabel('€')
+        ax[0].axhline(linewidth=3 , color = 'black')
         fig.legend(loc='upper left')
 
         all_spendings = [a + b + c + d + e + f for a,b,c,d,e,f in zip(dwell,union,food,college,car,freetime)]
         
-        month_kpi = [h - g for h,g in zip(income,all_spendings)]
+        month_kpi = [h + g for h,g in zip(income,all_spendings)]
 
         ax[1].plot(x, month_kpi)
         plt.fill_between(x, 0, month_kpi, where = np.array(month_kpi) > 0, color='green', alpha=.25, interpolate=True)
