@@ -48,10 +48,11 @@ class Vision:
         freetime = Categorieprep.freetime(self.data)
         income_from_savings = SubCategorieprep.income_from_savings(self.data)
         income = Categorieprep.income(self.data)
+        college = SubCategorieprep.college(self.data)
         
         x = Vision.get_months(self)
-        y = np.vstack([income,dwell, union, food, savings, car, freetime, income_from_savings])
-        label = ['Einkommen','Wohnungskosten','Gewerkschaft','Lebensmittel','Sparen','Auto','Freizeit','Geld vom Sparbuch']
+        y = np.vstack([income,dwell, union, food, savings, car, freetime, college, income_from_savings])
+        label = ['Einkommen','Wohnungskosten','Gewerkschaft','Lebensmittel','Sparen','Auto','Freizeit','College','Geld vom Sparbuch']
         
         fig,ax = plt.subplots(2,1) 
         ax[0].stackplot(x,y,labels = label)
@@ -59,9 +60,9 @@ class Vision:
         ax[0].set_ylabel('€')
         fig.legend(loc='upper left')
 
-        all_spendings = [a + b + c + d + e for a,b,c,d,e in zip(dwell,union,food,car,freetime)]
+        all_spendings = [a + b + c + d + e + f for a,b,c,d,e,f in zip(dwell,union,food,college,car,freetime)]
         
-        month_kpi = [f - g for f,g in zip(income,all_spendings)]
+        month_kpi = [h - g for h,g in zip(income,all_spendings)]
 
         ax[1].plot(x, month_kpi)
         plt.fill_between(x, 0, month_kpi, where = np.array(month_kpi) > 0, color='green', alpha=.25, interpolate=True)
