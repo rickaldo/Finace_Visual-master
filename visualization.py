@@ -74,6 +74,14 @@ class Vision:
         ax[1].set_ylabel('€')
         plt.show()
         
+    def year_shisha_chart(self):
+        shisha = SubCategorieprep.shisha(self.data)
+        x = Vision.get_months(self)
+
+        plt.plot(x, shisha)
+        plt.title("Sisha Ausgaben")
+        plt.fill_between(x, 0, shisha, where = np.array(shisha) > 0, alpha=.25 , interpolate=True)
+        plt.show()
 
     def month_subcategorie_pie(self, categorie,month):
         if len(categorie) != 0:
@@ -179,6 +187,8 @@ class Vision:
             print('Keine Categorie eingegeben')
             cate = input('Geben Sie die Kategorie erneut ein: ')
             self.month_subcategorie_pie(cate,month)
+
+        
 
 class Categorieprep:
     @staticmethod

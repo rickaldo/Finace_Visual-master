@@ -15,6 +15,7 @@ paths = [
 
 helperdata = helper.Helper(paths).createLogicObjects()
 vs.Vision(helperdata).year_basic_chart()
+vs.Vision(helperdata).year_shisha_chart()
 
 
 
