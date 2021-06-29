@@ -74,13 +74,13 @@ class Vision:
         ax[1].set_ylabel('€')
         plt.show()
         
-    def year_shisha_chart(self):
+    def year_football_chart(self):
         shisha = SubCategorieprep.shisha(self.data)
         x = Vision.get_months(self)
 
-        plt.plot(x, shisha)
-        plt.title("Sisha Ausgaben")
-        plt.fill_between(x, 0, shisha, where = np.array(shisha) > 0, alpha=.25 , interpolate=True)
+        plt.plot(x, football)
+        plt.title("Fußball Ausgaben")
+        plt.fill_between(x, 0, shisha, where = np.array(football) > 0, alpha=.25 , interpolate=True)
         plt.show()
 
     def month_subcategorie_pie(self, categorie,month):
