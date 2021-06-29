@@ -64,9 +64,9 @@ class Logic:
 
         fitness = self.betrag.where(self.kategorie.str.contains('Fitness')).sum()
         gaming = self.betrag.where(self.kategorie.str.contains('Zocken')).sum()
-        casino = self.betrag.where(self.kategorie.str.contains('Casino')).sum()
+        cars = self.betrag.where(self.kategorie.str.contains('Autos')).sum()
         entertainment = self.betrag.where(self.kategorie.str.contains('Entertainment')).sum()
-        shisha = self.betrag.where(self.kategorie.str.contains('Shisha')).sum()
+        football = self.betrag.where(self.kategorie.str.contains('Fußball')).sum()
         cash = self.betrag.where(self.kategorie.str.contains('Bargeld')).sum()
         football = self.betrag.where(self.kategorie.str.contains('Fußball')).sum()
         party = self.betrag.where(self.kategorie.str.contains('Feiern')).sum()
@@ -96,8 +96,8 @@ class Logic:
             'rent': rent *-1 , 'electricity': electricity*-1,
             'internet': internet *-1, 'gez': gez*-1,
             'fitness': fitness*-1, 'gaming': gaming*-1,
-            'casino': casino*-1, 'entertainment': entertainment*-1,
-            'shisha': shisha*-1, 'cash': cash*-1,
+            'cars': cars*-1, 'entertainment': entertainment*-1,
+            'football': football*-1, 'cash': cash*-1,
             'football': football*-1, 'party': party*-1,
             'extra': extra*-1, 'fastfood': fastfood*-1,
             'normalfood': normalfood*-1, 'savingbook': savingbook*-1,
