@@ -88,9 +88,9 @@ class Vision:
             if categorie == 'freetime':
                 fitness = SubCategorieprep.fitness(self.data)[month]
                 gaming = SubCategorieprep.gaming(self.data)[month]
-                casino = SubCategorieprep.casino(self.data)[month]
+                cars = SubCategorieprep.casino(self.data)[month]
                 entertain = SubCategorieprep.entertainment(self.data)[month]
-                shisha = SubCategorieprep.shisha(self.data)[month]
+                football = SubCategorieprep.shisha(self.data)[month]
                 cash = SubCategorieprep.cash(self.data)[month]
                 football = SubCategorieprep.football(self.data)[month]
                 party = SubCategorieprep.party(self.data)[month]
@@ -100,7 +100,7 @@ class Vision:
                 sizes = [fitness, gaming, casino, entertain,
                          shisha, cash, football, party, extra, clothing]
 
-                labels = ['Fitness', 'Zocken', 'Casino', 'Unterhaltungsmedien', 'Shisha',
+                labels = ['Fitness', 'Zocken', 'Cars', 'Unterhaltungsmedien', 'Fußball',
                           'Bargeld', 'Fußball', 'Feiern', 'Extra','Kleidung']
 
                 fig1, ax1 = plt.subplots()
@@ -288,7 +288,7 @@ class SubCategorieprep:
     def casino(data):
         neededdata = []
         for i in range(len(data)):
-            neededdata.append(data[i]['{}. SubCategories'.format(i + 1)]['casino'])
+            neededdata.append(data[i]['{}. SubCategories'.format(i + 1)]['car'])
         return neededdata
 
     @staticmethod
@@ -302,7 +302,7 @@ class SubCategorieprep:
     def shisha(data):
         neededdata = []
         for i in range(len(data)):
-            neededdata.append(data[i]['{}. SubCategories'.format(i + 1)]['shisha'])
+            neededdata.append(data[i]['{}. SubCategories'.format(i + 1)]['football'])
         return neededdata
 
     @staticmethod
