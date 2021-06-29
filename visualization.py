@@ -7,7 +7,7 @@ class Vision:
         
     def get_months(self):
         return ['Januar', 'Februar', 'März', 'April',
-                       'Mai', 'Juni', 'Juli','August','September']
+                       'Mai', 'Juni', 'Juli','August','September','August']
 
     def year_categorie_pie(self):
         dwell = sum(Categorieprep.dwell(self.data))
